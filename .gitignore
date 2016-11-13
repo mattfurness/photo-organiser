@@ -1,0 +1,49 @@
+# Bundler
+/.bundle
+/vendor/bundler
+/vendor/bundle
+/vendor/gems
+
+# Application config
+/coverage
+/db/*.sqlite3
+/log/*
+/public/assets
+/public/system
+/tmp
+/node_modules
+
+# User specified config files
+/.env.local
+/.foreman
+/.powenv
+/.powrc
+/.rvmrc
+/.rbenv-version
+/.tags
+/.tags_swap
+
+# Legacy config files
+/config/amqp.yml
+/config/asset_host.yml
+/config/asset_sync.yml
+/config/cache_store.yml
+/config/default_url_options.yml
+/config/hosts.yml
+/config/initializers/omniauth-passport.rb
+/config/newrelic.yml
+/config/omniauth.yml
+/config/paperclip.yml
+/config/redis.yml
+/config/services.yml
+/config/smtp_settings.yml
+/config/town_crier.yml
+
+# MacOS Pollution
+.DS_Store
+
+# REVISION file.
+REVISION
+
+# Generated Avatars
+**/avatars/
