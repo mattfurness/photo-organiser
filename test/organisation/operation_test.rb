@@ -8,7 +8,7 @@ class OperationTest < Minitest::Test
 
   def setup
     FileUtils.mkdir(DEST)
-    FileUtils.cp("test/image.jpg", DEST)
+    FileUtils.cp("images/image.jpg", DEST)
   end
 
   def teardown

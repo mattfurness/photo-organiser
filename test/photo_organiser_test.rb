@@ -5,10 +5,10 @@ class PhotoOrganiserTest < Minitest::Test
 
   def setup
     FileUtils.mkdir(PHOTOS)
-    FileUtils.cp("test/image.jpg", PHOTOS)
-    FileUtils.cp("test/image2.jpg", PHOTOS)
-    FileUtils.cp("test/not_exif.jpg", PHOTOS)
-    FileUtils.cp("test/not_image.txt", PHOTOS)
+    FileUtils.cp("images/image.jpg", PHOTOS)
+    FileUtils.cp("images/image2.jpg", PHOTOS)
+    FileUtils.cp("images/not_exif.jpg", PHOTOS)
+    FileUtils.cp("images/not_image.txt", PHOTOS)
   end
 
   def teardown
