@@ -5,7 +5,7 @@ module PhotoOrganiser
         exif_info.date_time.strftime(date_format)
       end
 
-      formatted.unshift(opts[:destination]).join(File::Separator)
+      formatted.unshift(opts[:destination]).join('/')
     end
   end
 end

@@ -2,7 +2,7 @@ require 'time'
 
 module PhotoOrganiser
   module Input
-    OPERATORS = /<=|>=|>|<|=|>/
+    OPERATORS_PATTERN = /<=|>=|>|<|=|>/
     OPERATORS_MAP = {
       '<' => :<,
       '<=' => :<=,
@@ -23,7 +23,7 @@ module PhotoOrganiser
     private
 
     def self.partition(filter_string)
-      photo_attr, op, value = filter_string.partition(OPERATORS)
+      photo_attr, op, value = filter_string.partition(OPERATORS_PATTERN)
 
       OpenStruct.new(
         photo_attr: photo_attr,

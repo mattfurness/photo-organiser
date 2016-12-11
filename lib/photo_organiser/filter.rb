@@ -1,14 +1,13 @@
 module PhotoOrganiser
-  SUPPORTED_EXTENSIONS = /jpeg|jpg/i
 
-  def self.filter(exif_infos, filters)
+  def self.match?(exif_info, filters)
     all_filters = filters << method(:supported?)
-    exif_infos.find_all { |je| filters.all? { |f| f.call(je) } }
+    all_filters.all? { |f| f.call(exif_info) }
   end
 
   private
 
   def self.supported?(exif_info)
-    SUPPORTED_EXTENSIONS.match(exif_info.extension)
+    exif_info.exif?
   end
 end

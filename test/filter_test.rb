@@ -3,25 +3,22 @@ require 'photo_organiser/filter'
 require 'photo_organiser/exif/exif_info_provider'
 
 class FilterTest < Minitest::Test
-  def test_that_filters_are_applied
-
+  def test_that_filters_are_used_to_match
     image = PhotoOrganiser::ExifInfoProvider.get_info('test/image.jpg')
-    not_exif = PhotoOrganiser::ExifInfoProvider.get_info('test/not_exif.jpg')
-    infos = [image, not_exif]
-    filters = [->(info) { info.name == 'image.jpg' }]
-    results = PhotoOrganiser.filter(infos, filters)
+    filters = [->(info) { info.name != 'image.jpg' }]
 
-    assert_equal results.length, 1
+    refute PhotoOrganiser.match?(image, filters)
   end
 
-  def test_that_only_supported_files_are_returned
-
+  def test_that_jpg_is_match
     image = PhotoOrganiser::ExifInfoProvider.get_info('test/image.jpg')
-    not_image = PhotoOrganiser::ExifInfoProvider.get_info('test/not_image.txt')
-    infos = [image, not_image]
-    filters = []
-    results = PhotoOrganiser.filter(infos, filters)
 
-    assert_equal results.length, 1
+    assert PhotoOrganiser.match?(image, [])
+  end
+
+  def test_that_txt_is_not_match
+    not_image = PhotoOrganiser::ExifInfoProvider.get_info('test/not_image.txt')
+
+    refute PhotoOrganiser.match?(not_image, [])
   end
 end

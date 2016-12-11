@@ -10,7 +10,7 @@ module PhotoOrganiser
       filters: []
     }.freeze
 
-    def self.parse_commands(args = ARGV)
+    def self.parse_commands(args)
       opts = Slop.parse(args) do |o|
         o.string '-s', '--source', 'The root folder of the source of the photos', default: DEFAULT_OPTS[:source]
         o.string '-d', '--destination', 'The root folder of where the date folders will go', default: DEFAULT_OPTS[:destination]
@@ -26,7 +26,7 @@ module PhotoOrganiser
       opts.to_hash
     end
 
-    def self.get_options(args = ARGV)
+    def self.get_options(args)
       opts = Slop.parse(args) do |o|
         o.string '-s', '--source', 'The root folder of the source of the photos', default: DEFAULT_OPTS[:source]
         o.string '-d', '--destination', 'The root folder of where the date folders will go', default: DEFAULT_OPTS[:destination]

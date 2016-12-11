@@ -35,12 +35,16 @@ module PhotoOrganiser
         @name ||= File.basename(@photo_file)
       end
 
+      def full_name
+        @full_name ||= File.absolute_path(@photo_file)
+      end
+
       def extension
         @extension ||= File.extname(@photo_file)
       end
 
       def exif?
-        @is_exif ||= __getobj__
+        @is_exif ||= __getobj__ && __getobj__.exif?
       end
     end
   end
