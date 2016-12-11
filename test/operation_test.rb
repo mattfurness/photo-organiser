@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'photo_organiser/organisation/operation'
+require 'photo_organiser/operation'
 require 'photo_organiser/exif/exif_info_provider'
 require 'fileutils'
 

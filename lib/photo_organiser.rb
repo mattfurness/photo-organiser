@@ -1,5 +1,3 @@
-require 'photo_organiser/version'
-
 module PhotoOrganiser
   def self.organise(args = ARGV)
     opts = PhotoOrganiser::Input.get_options(args)

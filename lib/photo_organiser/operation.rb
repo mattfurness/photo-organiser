@@ -6,7 +6,7 @@ module PhotoOrganiser
       op = opts[:move] ? FileUtils.method(:mv) : FileUtils.method(:cp)
 
       exif_infos.each do |exif_info|
-        place_at = PhotoOrganiser::Organisation.path_to_structure(exif_info, opts)
+        place_at = PhotoOrganiser::PathGenerator.generate_path(exif_info, opts)
         FileUtils.mkdir_p place_at
         op.call(exif_info.full_name, place_at)
       end
