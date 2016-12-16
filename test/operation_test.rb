@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'photo_organiser/operation'
-require 'photo_organiser/exif/exif_info_provider'
+require 'photo_organiser/exif_info_provider'
 require 'fileutils'
 
 class OperationTest < Minitest::Test
@@ -20,7 +20,7 @@ class OperationTest < Minitest::Test
     exif_info = PhotoOrganiser::ExifInfoProvider.get_info("#{DEST}/image.jpg")
     opts = {pattern: pattern, destination: DEST, move: false}
 
-    PhotoOrganiser::Organisation.place([exif_info], opts)
+    PhotoOrganiser::Operation.perform([exif_info], opts)
 
     assert File.exists?("#{DEST}/2004/09/09/image.jpg")
     assert File.exists?("#{DEST}/image.jpg")
@@ -31,7 +31,7 @@ class OperationTest < Minitest::Test
     exif_info = PhotoOrganiser::ExifInfoProvider.get_info("#{DEST}/image.jpg")
     opts = {pattern: pattern, destination: DEST, move: true}
 
-    PhotoOrganiser::Organisation.place([exif_info], opts)
+    PhotoOrganiser::Operation.perform([exif_info], opts)
 
     assert File.exists?("#{DEST}/2004/09/09/image.jpg")
     refute File.exists?("#{DEST}/image.jpg")

@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'photo_organiser/exif/exif_info_provider'
+require 'photo_organiser/exif_info_provider'
 
 class FolderStructureTest < Minitest::Test
   def test_can_get_file_size

@@ -1,8 +1,8 @@
 require 'fileutils'
 
 module PhotoOrganiser
-  module Organisation
-    def self.place(exif_infos, opts)
+  module Operation
+    def self.perform(exif_infos, opts)
       op = opts[:move] ? FileUtils.method(:mv) : FileUtils.method(:cp)
 
       exif_infos.each do |exif_info|

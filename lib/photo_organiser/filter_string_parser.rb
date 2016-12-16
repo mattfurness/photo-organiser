@@ -1,7 +1,7 @@
 require 'time'
 
 module PhotoOrganiser
-  module Input
+  module FilterStringParser
     OPERATORS_PATTERN = /<=|>=|>|<|=|>/
     OPERATORS_MAP = {
       '<' => :<,
@@ -11,7 +11,7 @@ module PhotoOrganiser
       '=' => :==
     }
 
-    def self.parse_filter_string(filter_string)
+    def self.parse(filter_string)
       partioned = partition(filter_string)
       lambda { |info|
         return false unless info.respond_to?(partioned.photo_attr)

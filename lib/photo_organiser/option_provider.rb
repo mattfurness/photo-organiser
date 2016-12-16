@@ -1,7 +1,7 @@
 require 'slop'
 
 module PhotoOrganiser
-  module Input
+  module OptionProvider
     DEFAULT_OPTS = {
       source: '.',
       destination: '.',
