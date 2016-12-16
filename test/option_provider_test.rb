@@ -32,16 +32,9 @@ class OptionProviderTest < Minitest::Test
 
   def test_that_version_is_printed
     result = with_captured_stdout do
-      PhotoOrganiser::OptionProvider.parse_commands(['-v', '-p', 'pattern'])
+      PhotoOrganiser::OptionProvider.get_options(['-v', '-p', 'pattern'])
     end
 
     assert_equal "0.1.0#{$/}", result
-  end
-
-  def test_that_version_is_a_command
-    result = with_captured_stdout do
-      contains_command = PhotoOrganiser::OptionProvider.parse_commands(['-v', '-p', 'pattern'])
-      assert contains_command
-    end
   end
 end
