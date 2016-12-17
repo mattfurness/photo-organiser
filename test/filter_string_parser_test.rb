@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'time'
 require 'photo_organiser/filter_string_parser'
 
 class FilterStringParserTest < Minitest::Test
@@ -66,8 +67,8 @@ class FilterStringParserTest < Minitest::Test
   end
 
   def test_date_can_be_equal
-    test_obj = OpenStruct.new(time: Time.new(2016,11,1))
-    filter_string = "time=2016-11-1"
+    test_obj = OpenStruct.new(time: Date.new(2016,11,1))
+    filter_string = "time=2016-11-01"
 
     result = PhotoOrganiser::FilterStringParser.parse(filter_string).call(test_obj)
 
@@ -76,7 +77,7 @@ class FilterStringParserTest < Minitest::Test
 
   def test_missing_property
     test_obj = OpenStruct.new(foo: 'bar')
-    filter_string = "test=splat"
+    filter_string = 'test="splat"'
 
     result = PhotoOrganiser::FilterStringParser.parse(filter_string).call(test_obj)
 
@@ -91,12 +92,13 @@ class FilterStringParserTest < Minitest::Test
 
     assert result
   end
+  
+  def test_file_size_conversion
+    test_obj = OpenStruct.new(foo: 1024)
+    filter_string = 'foo=1 KiB'
 
-  def test_unquoted_string
-    test_obj = OpenStruct.new(foo: 'bar')
-    filter_string = 'foo=bar'
-
-    result = PhotoOrganiser::FilterStringParser.parse(filter_string).call(test_obj)
+    parsed = PhotoOrganiser::FilterStringParser.parse(filter_string)
+    result = parsed.call(test_obj)
 
     assert result
   end

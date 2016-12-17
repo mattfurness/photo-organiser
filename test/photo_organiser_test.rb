@@ -20,7 +20,7 @@ class PhotoOrganiserTest < Minitest::Test
   end
 
   def test_that_exif_image_is_copied
-    args = ['--pattern', '%Y/%m/%d', '--source', PHOTOS, '--destination', "#{PHOTOS}/dest", '--move', 'true', '--filters', 'name=image2.jpg']
+    args = ['--pattern', '%Y/%m/%d', '--source', PHOTOS, '--destination', "#{PHOTOS}/dest", '--move', 'true', '--filters', 'name="image2.jpg"']
     PhotoOrganiser.organise(args)
     assert File.exists?("#{PHOTOS}/dest/2004/09/09/image2.jpg")
   end
