@@ -12,14 +12,18 @@ module PhotoOrganiser
       
       rule(:contains => '=', :prop_sym => simple(:prop), :text_value => simple(:val)) {
         lambda{ |info|
-          info.respond_to?(prop) ? info.send(prop).send(:include?, val) : false
+          FilterTransform.exec_op_on_info(info, prop, :include?, val)
         }
       }
       rule(:std_op => simple(:op), :prop_sym => simple(:prop), :std_value => simple(:val)) {
         lambda{ |info|
-          info.respond_to?(prop) ? info.send(prop).send(op, val) : false
+          FilterTransform.exec_op_on_info(info, prop, op, val)
         }
       }
+
+      def self.exec_op_on_info(info, prop, op, val)
+        info.respond_to?(prop) ? info.send(prop).send(op, val) : false
+      end
     end
   end
 end
