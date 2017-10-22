@@ -22,7 +22,7 @@ class PhotoOrganiserTest < Minitest::Test
   def test_that_exif_image_is_copied
     args = [
       '--pattern', '%Y/%m/%d',
-      '--source', PHOTOS,
+      '--source', "#{PHOTOS}/**/*",
       '--destination', "#{PHOTOS}/dest",
       '--move', 'true',
       '--filters', 'name="image2.jpg"'

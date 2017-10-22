@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'photo_organiser/filter'
+require 'photo_organiser'
 require 'photo_organiser/exif_info_provider'
 
 class FilterTest < Minitest::Test

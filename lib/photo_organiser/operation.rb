@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'photo_organiser/path_generator'
 
 module PhotoOrganiser
   module Operation
