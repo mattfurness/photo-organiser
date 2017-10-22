@@ -3,22 +3,12 @@ require 'exifr'
 module PhotoOrganiser
   module ExifInfoProvider
     def self.get_info(photo_file)
-      ExifDelegator.new(get_exif(photo_file), photo_file)
-    end
-
-    private
-
-    def self.get_exif(photo_file)
-      begin
-        exif_info = EXIFR::JPEG.new(photo_file)
-      rescue EXIFR::MalformedImage
-        return nil
-      end
+      ExifDelegator.new(photo_file)
     end
 
     class ExifDelegator < SimpleDelegator
-      def initialize(exif_info, photo_file)
-        super(exif_info)
+      def initialize(photo_file)
+        super(get_exif(photo_file))
 
         @photo_file = photo_file
       end
@@ -45,6 +35,14 @@ module PhotoOrganiser
 
       def exif?
         @is_exif ||= __getobj__ && __getobj__.exif?
+      end
+
+      private
+
+      def get_exif(photo_file)
+        EXIFR::JPEG.new(photo_file)
+      rescue EXIFR::MalformedImage
+        return nil
       end
     end
   end

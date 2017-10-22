@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Organise photos by date'
   spec.description   = 'Organise photos by date filtering on EXIF info'
-  spec.homepage      = 'https://github.com/mattfurness/photo-organiser-rb'
+  spec.homepage      = 'https://github.com/mattfurness/photo-organiser'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
